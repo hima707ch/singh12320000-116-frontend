@@ -1,21 +1,29 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Header from "./Global/Header.jsx"
+import HomePage from "./HomePage/Body.jsx";
+import LoginPage from "./LoginPage/Body.jsx";
+import RegistrationPage from "./RegistrationPage/Body.jsx";
+import DashboardPage from "./DashboardPage/Body.jsx";
+import PropertyDetailsPage from "./PropertyDetailsPage/Body.jsx";
+import PropertyListingPage from "./PropertyListingPage/Body.jsx";
+import AdminPanel from "./AdminPanel/Body.jsx";
 
 const Body = () => {
-  useEffect(() => {
-    const interval = setInterval(() => {
-      window.location.reload();
-    }, 4000); // refresh every 4 seconds
-
-    return () => clearInterval(interval); // cleanup on unmount
-  }, []);
-
-  return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
-      <div className="text-xl font-semibold text-gray-700 bg-white px-6 py-4 rounded shadow">
-        Loading Preview...
-      </div>
-    </div>
-  );
+    return (
+        <Router>
+        <Header />
+            <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/loginpage" element={<LoginPage />} />
+        <Route path="/registrationpage" element={<RegistrationPage />} />
+        <Route path="/dashboardpage" element={<DashboardPage />} />
+        <Route path="/propertydetailspage" element={<PropertyDetailsPage />} />
+        <Route path="/propertylistingpage" element={<PropertyListingPage />} />
+        <Route path="/adminpanel" element={<AdminPanel />} />
+            </Routes>
+        </Router>
+    );
 };
 
 export default Body;
